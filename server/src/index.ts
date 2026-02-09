@@ -5,6 +5,8 @@ import connectDB from './config/db';
 import productRoutes from './routes/productRoutes';
 import userRoutes from './routes/userRoutes';
 import orderRoutes from './routes/orderRoutes';
+import adminProductRoutes from './routes/adminProductRoutes';
+import adminOrderRoutes from './routes/adminOrderRoutes';
 import { notFound, errorHandler } from './middleware/errorMiddleware';
 
 dotenv.config();
@@ -24,6 +26,8 @@ app.get('/', (req, res) => {
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/admin/products', adminProductRoutes);
+app.use('/api/admin/orders', adminOrderRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
