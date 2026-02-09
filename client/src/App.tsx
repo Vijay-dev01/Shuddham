@@ -12,6 +12,9 @@ import CartPage from './pages/CartPage';
 import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
+import SearchPage from './pages/SearchPage';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -31,7 +34,9 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Login />} /> {/* Placeholder for now */}
+            <Route path="/register" element={<Register />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </main>
