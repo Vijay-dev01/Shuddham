@@ -1,0 +1,6 @@
+// Redux Store Setup
+// 1. Create apiSlice (RTK Query) for base API
+// 2. Create productsApiSlice injected endpoints
+// 3. Create usersApiSlice injected endpoints
+// 4. Create authSlice for state
+// 5. Create cartSlice for state

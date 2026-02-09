@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1E6F5C;
+  --color-secondary: #7A4A2E;
+  --color-accent: #F2B705;
+  --color-background: #FAFAF7;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Custom Utilities if needed */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
