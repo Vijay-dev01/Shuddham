@@ -16,11 +16,14 @@ const orderSchema = new mongoose.Schema({
         country: { type: String, required: true }
     },
     paymentMethod: { type: String, required: true },
-    paymentResult: { // Result from Razorpay
+    paymentResult: {
         id: String,
         status: String,
         update_time: String,
-        email_address: String
+        email_address: String,
+        razorpay_order_id: String,
+        razorpay_payment_id: String,
+        razorpay_signature: String
     },
     itemsPrice: { type: Number, required: true, default: 0.0 },
     taxPrice: { type: Number, required: true, default: 0.0 },
