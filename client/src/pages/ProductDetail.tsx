@@ -5,6 +5,8 @@ import Button from '../components/ui/Button';
 import { useGetProductDetailsQuery } from '../redux/api/productsApiSlice';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/slices/cartSlice';
+import ReviewList from '../components/product/ReviewList';
+import ReviewForm from '../components/product/ReviewForm';
 
 const ProductDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -108,6 +110,11 @@ const ProductDetail: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="mt-12">
+                <ReviewForm productId={id || ''} />
+                <ReviewList productId={id || ''} />
             </div>
         </div>
     );

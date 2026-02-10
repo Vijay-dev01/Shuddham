@@ -1,13 +1,14 @@
 import React from 'react';
 import Hero from '../components/home/Hero';
 import Features from '../components/home/Features';
+import HomeReviews from '../components/home/HomeReviews';
 import ProductCard from '../components/product/ProductCard';
 import { useGetProductsQuery } from '../redux/api/productsApiSlice';
 import { Loader2 } from 'lucide-react';
 
 const Home: React.FC = () => {
     const { data: products, isLoading, error } = useGetProductsQuery({});
-    console.log(products,"pro")
+    console.log(products, "pro")
     return (
         <div className="bg-[#FAFAF7]">
             <Hero />
@@ -50,8 +51,11 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Process Section Placeholder */}
-            <section className="py-16 bg-[#1E6F5C] text-white text-center">
+            {/* Customer Reviews */}
+            <HomeReviews />
+
+            {/* Newsletter */}
+            <section className="py-20 bg-[#1E6F5C] text-white text-center">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-heading font-bold mb-8">How We Make It</h2>
                     <p className="text-lg opacity-90 max-w-2xl mx-auto">

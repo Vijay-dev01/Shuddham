@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Package, ShoppingBag, Users, Settings } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingBag, Users, Settings, Star } from 'lucide-react';
 
 interface AdminSidebarProps {
     isOpen: boolean;
@@ -12,6 +12,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen }) => {
         { name: 'Products', path: '/admin/products', icon: Package },
         { name: 'Orders', path: '/admin/orders', icon: ShoppingBag },
         { name: 'Customers', path: '/admin/customers', icon: Users },
+        { name: 'Reviews', path: '/admin/reviews', icon: Star },
         { name: 'Settings', path: '/admin/settings', icon: Settings },
     ];
 

@@ -8,6 +8,7 @@ import orderRoutes from './routes/orderRoutes';
 import adminProductRoutes from './routes/adminProductRoutes';
 import adminOrderRoutes from './routes/adminOrderRoutes';
 import uploadRoutes from './routes/uploadRoutes';
+import reviewRoutes from './routes/reviewRoutes';
 import { notFound, errorHandler } from './middleware/errorMiddleware';
 import path from 'path';
 
@@ -34,6 +35,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/admin/products', adminProductRoutes);
 app.use('/api/admin/orders', adminOrderRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

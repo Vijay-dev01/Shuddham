@@ -21,6 +21,7 @@ import Products from './admin/pages/Products';
 import ProductForm from './admin/pages/ProductForm';
 import AdminOrders from './admin/pages/Orders';
 import Customers from './admin/pages/Customers';
+import Reviews from './admin/pages/Reviews';
 import Settings from './admin/pages/Settings';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
               <Route path="products/edit/:id" element={<ProductForm />} />
               <Route path="orders" element={<AdminOrders />} />
               <Route path="customers" element={<Customers />} />
+              <Route path="reviews" element={<Reviews />} />
               <Route path="settings" element={<Settings />} />
             </Route>
 
