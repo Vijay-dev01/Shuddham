@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./config/db"));
 const productRoutes_1 = __importDefault(require("./routes/productRoutes"));
@@ -13,6 +14,7 @@ const orderRoutes_1 = __importDefault(require("./routes/orderRoutes"));
 const adminProductRoutes_1 = __importDefault(require("./routes/adminProductRoutes"));
 const adminOrderRoutes_1 = __importDefault(require("./routes/adminOrderRoutes"));
 const uploadRoutes_1 = __importDefault(require("./routes/uploadRoutes"));
+const reviewRoutes_1 = __importDefault(require("./routes/reviewRoutes"));
 const errorMiddleware_1 = require("./middleware/errorMiddleware");
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
@@ -32,6 +34,7 @@ app.use('/api/orders', orderRoutes_1.default);
 app.use('/api/admin/products', adminProductRoutes_1.default);
 app.use('/api/admin/orders', adminOrderRoutes_1.default);
 app.use('/api/upload', uploadRoutes_1.default);
+app.use('/api/reviews', reviewRoutes_1.default);
 app.use(errorMiddleware_1.notFound);
 app.use(errorMiddleware_1.errorHandler);
 app.listen(port, () => {
