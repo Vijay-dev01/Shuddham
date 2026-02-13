@@ -15,13 +15,13 @@ const Contact: React.FC = () => {
 
                     <div className="space-y-4">
                         <p className="font-bold text-[#1E6F5C]">Address:</p>
-                        <p className="text-gray-600">123, Green Farm Road,<br />Coimbatore, Tamil Nadu - 641001</p>
+                        <p className="text-gray-600">#59, Gaddige,<br />Mysore, Karnataka - 571189</p>
 
                         <p className="font-bold text-[#1E6F5C] mt-4">Email:</p>
                         <p className="text-gray-600">hello@shuddham.com</p>
 
                         <p className="font-bold text-[#1E6F5C] mt-4">WhatsApp / Phone:</p>
-                        <p className="text-gray-600">+91 98765 43210</p>
+                        <p className="text-gray-600">+91 9353456923</p>
                     </div>
                 </div>
 
