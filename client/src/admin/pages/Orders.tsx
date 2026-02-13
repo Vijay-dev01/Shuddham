@@ -136,8 +136,8 @@ const Orders: React.FC = () => {
                                         <td className="px-6 py-4">
                                             <span
                                                 className={`px-2 py-1 text-xs font-bold rounded-full ${order.isPaid
-                                                        ? 'bg-green-100 text-green-700'
-                                                        : 'bg-yellow-100 text-yellow-700'
+                                                    ? 'bg-green-100 text-green-700'
+                                                    : 'bg-yellow-100 text-yellow-700'
                                                     }`}
                                             >
                                                 {order.isPaid ? 'Paid' : 'Pending'}
@@ -146,13 +146,23 @@ const Orders: React.FC = () => {
                                         <td className="px-6 py-4">
                                             {order.isPaid ? (
                                                 <select
-                                                    value={order.isDelivered ? 'Delivered' : 'Processing'}
+                                                    value={(order as any).status || 'Pending'}
                                                     onChange={(e) => handleStatusChange(order._id, e.target.value)}
                                                     disabled={updating}
-                                                    className="text-xs font-bold px-2 py-1 rounded-lg border-0 focus:ring-2 focus:ring-[#1E6F5C] outline-none bg-blue-100 text-blue-700"
+                                                    className={`text-xs font-bold px-2 py-1 rounded-lg border-0 focus:ring-2 focus:ring-[#1E6F5C] outline-none ${(order as any).status === 'Delivered' ? 'bg-green-100 text-green-700' :
+                                                            (order as any).status === 'Shipped' ? 'bg-indigo-100 text-indigo-700' :
+                                                                (order as any).status === 'Packed' ? 'bg-purple-100 text-purple-700' :
+                                                                    (order as any).status === 'Confirmed' ? 'bg-blue-100 text-blue-700' :
+                                                                        (order as any).status === 'Cancelled' ? 'bg-red-100 text-red-700' :
+                                                                            'bg-yellow-100 text-yellow-700'
+                                                        }`}
                                                 >
-                                                    <option value="Processing">Processing</option>
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="Confirmed">Confirmed</option>
+                                                    <option value="Packed">Packed</option>
+                                                    <option value="Shipped">Shipped</option>
                                                     <option value="Delivered">Delivered</option>
+                                                    <option value="Cancelled">Cancelled</option>
                                                 </select>
                                             ) : (
                                                 <span className="px-2 py-1 text-xs font-bold rounded-full bg-gray-100 text-gray-600">

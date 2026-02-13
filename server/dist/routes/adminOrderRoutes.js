@@ -13,6 +13,8 @@ router.route('/dashboard/stats')
     .get(authMiddleware_1.protect, adminMiddleware_1.isAdmin, adminOrderController_1.getDashboardStats);
 router.route('/')
     .get(authMiddleware_1.protect, adminMiddleware_1.isAdmin, adminOrderController_1.getAllOrders);
+router.route('/:id')
+    .get(authMiddleware_1.protect, adminMiddleware_1.isAdmin, adminOrderController_1.getOrderById);
 router.route('/:id/status')
     .put(authMiddleware_1.protect, adminMiddleware_1.isAdmin, adminOrderController_1.updateOrderStatus);
 exports.default = router;

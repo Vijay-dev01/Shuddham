@@ -1,6 +1,7 @@
 import express from 'express';
 import {
     getAllOrders,
+    getOrderById,
     updateOrderStatus,
     getDashboardStats
 } from '../controllers/adminOrderController';
@@ -16,6 +17,9 @@ router.route('/dashboard/stats')
 
 router.route('/')
     .get(protect, isAdmin, getAllOrders);
+
+router.route('/:id')
+    .get(protect, isAdmin, getOrderById);
 
 router.route('/:id/status')
     .put(protect, isAdmin, updateOrderStatus);

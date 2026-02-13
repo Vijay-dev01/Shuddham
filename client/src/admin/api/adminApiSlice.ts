@@ -48,6 +48,10 @@ export const adminApiSlice = apiSlice.injectEndpoints({
             query: () => '/admin/orders',
             providesTags: ['Order'],
         }),
+        getOrderById: builder.query({
+            query: (id) => `/admin/orders/${id}`,
+            providesTags: ['Order'],
+        }),
         updateOrderStatus: builder.mutation({
             query: ({ id, status }) => ({
                 url: `/admin/orders/${id}/status`,
@@ -67,5 +71,6 @@ export const {
     useDeleteProductMutation,
     useToggleProductStatusMutation,
     useGetAdminOrdersQuery,
+    useGetOrderByIdQuery,
     useUpdateOrderStatusMutation,
 } = adminApiSlice;

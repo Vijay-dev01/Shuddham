@@ -17,20 +17,45 @@ const getAllOrders = asyncHandler(async (req: Request, res: Response) => {
 // @access  Private/Admin
 const updateOrderStatus = asyncHandler(async (req: Request, res: Response) => {
     const { status } = req.body;
+
+    // Validate status
+    const validStatuses = ['Pending', 'Confirmed', 'Packed', 'Shipped', 'Delivered', 'Cancelled'];
+    if (!validStatuses.includes(status)) {
+        res.status(400);
+        throw new Error('Invalid status value');
+    }
+
     const order = await Order.findById(req.params.id);
 
     if (order) {
+        // Update status field
+        (order as any).status = status;
+
         // Update isDelivered if status is 'Delivered'
         if (status === 'Delivered') {
             order.isDelivered = true;
             order.deliveredAt = new Date();
+        } else {
+            order.isDelivered = false;
         }
-
-        // You can add a custom status field to Order model if needed
-        // order.status = status;
 
         const updatedOrder = await order.save();
         res.json(updatedOrder);
+    } else {
+        res.status(404);
+        throw new Error('Order not found');
+    }
+});
+
+// @desc    Get order by ID (Admin)
+// @route   GET /api/admin/orders/:id
+// @access  Private/Admin
+const getOrderById = asyncHandler(async (req: Request, res: Response) => {
+    const order = await Order.findById(req.params.id)
+        .populate('user', 'name email phone');
+
+    if (order) {
+        res.json(order);
     } else {
         res.status(404);
         throw new Error('Order not found');
@@ -73,6 +98,7 @@ const getDashboardStats = asyncHandler(async (req: Request, res: Response) => {
 
 export {
     getAllOrders,
+    getOrderById,
     updateOrderStatus,
     getDashboardStats
 };

@@ -15,11 +15,14 @@ import PlaceOrderPage from './pages/PlaceOrderPage';
 import SearchPage from './pages/SearchPage';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import MyOrders from './pages/MyOrders';
+import OrderDetailsPage from './pages/OrderDetailsPage';
 import AdminLayout from './admin/components/AdminLayout';
 import Dashboard from './admin/pages/Dashboard';
 import Products from './admin/pages/Products';
 import ProductForm from './admin/pages/ProductForm';
 import AdminOrders from './admin/pages/Orders';
+import OrderDetails from './admin/pages/OrderDetails';
 import Customers from './admin/pages/Customers';
 import Reviews from './admin/pages/Reviews';
 import Settings from './admin/pages/Settings';
@@ -45,6 +48,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/orders" element={<MyOrders />} />
+            <Route path="/orders/:id" element={<OrderDetailsPage />} />
 
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminLayout />}>
@@ -53,6 +58,7 @@ function App() {
               <Route path="products/create" element={<ProductForm />} />
               <Route path="products/edit/:id" element={<ProductForm />} />
               <Route path="orders" element={<AdminOrders />} />
+              <Route path="orders/:id" element={<OrderDetails />} />
               <Route path="customers" element={<Customers />} />
               <Route path="reviews" element={<Reviews />} />
               <Route path="settings" element={<Settings />} />

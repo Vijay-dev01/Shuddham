@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDashboardStats = exports.updateOrderStatus = exports.getAllOrders = void 0;
+exports.getDashboardStats = exports.updateOrderStatus = exports.getOrderById = exports.getAllOrders = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const Order_1 = __importDefault(require("../models/Order"));
 // @desc    Get all orders (Admin)
@@ -21,15 +21,24 @@ exports.getAllOrders = getAllOrders;
 // @access  Private/Admin
 const updateOrderStatus = (0, express_async_handler_1.default)(async (req, res) => {
     const { status } = req.body;
+    // Validate status
+    const validStatuses = ['Pending', 'Confirmed', 'Packed', 'Shipped', 'Delivered', 'Cancelled'];
+    if (!validStatuses.includes(status)) {
+        res.status(400);
+        throw new Error('Invalid status value');
+    }
     const order = await Order_1.default.findById(req.params.id);
     if (order) {
+        // Update status field
+        order.status = status;
         // Update isDelivered if status is 'Delivered'
         if (status === 'Delivered') {
             order.isDelivered = true;
             order.deliveredAt = new Date();
         }
-        // You can add a custom status field to Order model if needed
-        // order.status = status;
+        else {
+            order.isDelivered = false;
+        }
         const updatedOrder = await order.save();
         res.json(updatedOrder);
     }
@@ -39,6 +48,21 @@ const updateOrderStatus = (0, express_async_handler_1.default)(async (req, res) 
     }
 });
 exports.updateOrderStatus = updateOrderStatus;
+// @desc    Get order by ID (Admin)
+// @route   GET /api/admin/orders/:id
+// @access  Private/Admin
+const getOrderById = (0, express_async_handler_1.default)(async (req, res) => {
+    const order = await Order_1.default.findById(req.params.id)
+        .populate('user', 'name email phone');
+    if (order) {
+        res.json(order);
+    }
+    else {
+        res.status(404);
+        throw new Error('Order not found');
+    }
+});
+exports.getOrderById = getOrderById;
 // @desc    Get dashboard stats
 // @route   GET /api/admin/dashboard/stats
 // @access  Private/Admin
